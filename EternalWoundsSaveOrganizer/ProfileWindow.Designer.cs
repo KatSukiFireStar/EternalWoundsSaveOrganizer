@@ -30,15 +30,15 @@
         {
             label1 = new Label();
             SaveLocation = new TextBox();
-            BrowseSaveButton = new Button();
             label2 = new Label();
-            textBox1 = new TextBox();
+            ProfileDirectory = new TextBox();
             BrowseProfileButton = new Button();
             label3 = new Label();
             NewProfileButton = new Button();
             EditButton = new Button();
             DeleteButton = new Button();
-            listView1 = new ListView();
+            ProfileList = new ListView();
+            BrowseSaveButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -59,15 +59,6 @@
             SaveLocation.Size = new Size(383, 23);
             SaveLocation.TabIndex = 1;
             // 
-            // BrowseSaveButton
-            // 
-            BrowseSaveButton.Location = new Point(403, 25);
-            BrowseSaveButton.Name = "BrowseSaveButton";
-            BrowseSaveButton.Size = new Size(75, 23);
-            BrowseSaveButton.TabIndex = 2;
-            BrowseSaveButton.Text = "Browse";
-            BrowseSaveButton.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -77,13 +68,13 @@
             label2.TabIndex = 3;
             label2.Text = "Profile Directory :";
             // 
-            // textBox1
+            // ProfileDirectory
             // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(14, 80);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(383, 23);
-            textBox1.TabIndex = 4;
+            ProfileDirectory.Enabled = false;
+            ProfileDirectory.Location = new Point(14, 80);
+            ProfileDirectory.Name = "ProfileDirectory";
+            ProfileDirectory.Size = new Size(383, 23);
+            ProfileDirectory.TabIndex = 4;
             // 
             // BrowseProfileButton
             // 
@@ -93,6 +84,7 @@
             BrowseProfileButton.TabIndex = 5;
             BrowseProfileButton.Text = "Browse";
             BrowseProfileButton.UseVisualStyleBackColor = true;
+            BrowseProfileButton.Click += BrowseProfileButton_Click;
             // 
             // label3
             // 
@@ -111,6 +103,7 @@
             NewProfileButton.TabIndex = 8;
             NewProfileButton.Text = "New";
             NewProfileButton.UseVisualStyleBackColor = true;
+            NewProfileButton.Click += NewProfileButton_Click;
             // 
             // EditButton
             // 
@@ -129,32 +122,43 @@
             DeleteButton.TabIndex = 10;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
+            DeleteButton.Click += this.DeleteButton_Click;
             // 
-            // listView1
+            // ProfileList
             // 
-            listView1.BackColor = SystemColors.ControlDark;
-            listView1.HeaderStyle = ColumnHeaderStyle.None;
-            listView1.Location = new Point(14, 148);
-            listView1.MultiSelect = false;
-            listView1.Name = "listView1";
-            listView1.ShowGroups = false;
-            listView1.Size = new Size(383, 97);
-            listView1.TabIndex = 11;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.List;
+            ProfileList.BackColor = SystemColors.ControlDark;
+            ProfileList.HeaderStyle = ColumnHeaderStyle.None;
+            ProfileList.Location = new Point(14, 148);
+            ProfileList.MultiSelect = false;
+            ProfileList.Name = "ProfileList";
+            ProfileList.ShowGroups = false;
+            ProfileList.Size = new Size(383, 97);
+            ProfileList.TabIndex = 11;
+            ProfileList.UseCompatibleStateImageBehavior = false;
+            ProfileList.View = View.List;
+            // 
+            // BrowseSaveButton
+            // 
+            BrowseSaveButton.Location = new Point(403, 25);
+            BrowseSaveButton.Name = "BrowseSaveButton";
+            BrowseSaveButton.Size = new Size(75, 23);
+            BrowseSaveButton.TabIndex = 2;
+            BrowseSaveButton.Text = "Browse";
+            BrowseSaveButton.UseVisualStyleBackColor = true;
+            BrowseSaveButton.Click += BrowseSaveButton_Click;
             // 
             // ProfileWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(490, 261);
-            Controls.Add(listView1);
+            ClientSize = new Size(486, 261);
+            Controls.Add(ProfileList);
             Controls.Add(DeleteButton);
             Controls.Add(EditButton);
             Controls.Add(NewProfileButton);
             Controls.Add(label3);
             Controls.Add(BrowseProfileButton);
-            Controls.Add(textBox1);
+            Controls.Add(ProfileDirectory);
             Controls.Add(label2);
             Controls.Add(BrowseSaveButton);
             Controls.Add(SaveLocation);
@@ -169,14 +173,14 @@
 
         private Label label1;
         private TextBox SaveLocation;
-        private Button BrowseSaveButton;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox ProfileDirectory;
         private Button BrowseProfileButton;
         private Label label3;
         private Button NewProfileButton;
         private Button EditButton;
         private Button DeleteButton;
-        private ListView listView1;
+        private ListView ProfileList;
+        private Button BrowseSaveButton;
     }
 }
