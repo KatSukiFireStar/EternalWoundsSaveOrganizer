@@ -29,28 +29,26 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            DropDownProfile = new ComboBox();
             ProfileButton = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            checkedListBox1 = new CheckedListBox();
-            flowLayoutPanel1.SuspendLayout();
+            listBox1 = new ListBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(8, 10);
+            label1.Location = new Point(12, 10);
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
             label1.TabIndex = 0;
             label1.Text = "Profile :";
             // 
-            // comboBox1
+            // DropDownProfile
             // 
-            comboBox1.Location = new Point(71, 7);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(308, 23);
-            comboBox1.TabIndex = 1;
+            DropDownProfile.Location = new Point(71, 7);
+            DropDownProfile.Name = "DropDownProfile";
+            DropDownProfile.Size = new Size(308, 23);
+            DropDownProfile.TabIndex = 1;
             // 
             // ProfileButton
             // 
@@ -62,37 +60,27 @@
             ProfileButton.UseVisualStyleBackColor = true;
             ProfileButton.Click += ProfileButton_Click;
             // 
-            // flowLayoutPanel1
+            // listBox1
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = SystemColors.ControlDark;
-            flowLayoutPanel1.Controls.Add(checkedListBox1);
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(8, 66);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(478, 347);
-            flowLayoutPanel1.TabIndex = 3;
-            // 
-            // checkedListBox1
-            // 
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(3, 3);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(162, 418);
-            checkedListBox1.TabIndex = 0;
+            listBox1.BackColor = SystemColors.ControlDark;
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(12, 49);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(474, 349);
+            listBox1.TabIndex = 4;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(498, 450);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(listBox1);
             Controls.Add(ProfileButton);
-            Controls.Add(comboBox1);
+            Controls.Add(DropDownProfile);
             Controls.Add(label1);
             Name = "MainWindow";
             Text = "Eternal Wounds Save Organizer";
-            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -100,9 +88,8 @@
         #endregion
 
         private Label label1;
-        private ComboBox comboBox1;
+        private ComboBox DropDownProfile;
         private Button ProfileButton;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private CheckedListBox checkedListBox1;
+        private ListBox listBox1;
     }
 }

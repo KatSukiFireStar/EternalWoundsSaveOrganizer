@@ -1,6 +1,6 @@
 ﻿namespace EternalWoundsSaveOrganizer
 {
-    partial class NameProfileWindow
+    partial class EditNameProfileWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -70,7 +70,7 @@
             CancelButton.UseVisualStyleBackColor = true;
             CancelButton.Click += CancelButton_Click;
             // 
-            // NameProfileWindow
+            // EditNameProfileWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -79,8 +79,8 @@
             Controls.Add(OKButton);
             Controls.Add(ProfileNameText);
             Controls.Add(label1);
-            Name = "NameProfileWindow";
-            Text = "Create Profile";
+            Name = "EditNameProfileWindow";
+            Text = "EditProfile";
             ResumeLayout(false);
             PerformLayout();
         }

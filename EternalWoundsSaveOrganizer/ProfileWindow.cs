@@ -20,6 +20,13 @@ namespace EternalWoundsSaveOrganizer
             SaveLocation.Text = Properties.Settings.Default.SaveLocation;
             ProfileDirectory.Text = Properties.Settings.Default.ProfileDirectory;
 
+            if (String.IsNullOrEmpty(Properties.Settings.Default.ProfileDirectory))
+            {
+                NewProfileButton.Enabled = false;
+                EditButton.Enabled = false;
+                DeleteButton.Enabled = false;
+            }
+
             if (Properties.Settings.Default.Profiles != null)
                 PrintProfiles();
             else
@@ -57,6 +64,10 @@ namespace EternalWoundsSaveOrganizer
                     ProfileDirectory.Text = folderPath;
                     Properties.Settings.Default.ProfileDirectory = folderPath;
                     Properties.Settings.Default.Save();
+
+                    NewProfileButton.Enabled = true;
+                    EditButton.Enabled = true;
+                    DeleteButton.Enabled = true;
                 }
             }
         }
@@ -64,15 +75,24 @@ namespace EternalWoundsSaveOrganizer
         private void NewProfileButton_Click(object sender, EventArgs e)
         {
             NameProfileWindow w = new NameProfileWindow();
-            if(w.ShowDialog() == DialogResult.OK)
-            {
-                PrintProfiles();
-            }
+            w.FormClosed += (s, args) => { PrintProfiles(); };
+            w.ShowDialog();
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (ProfileList.SelectedItems.Count == 0)
+                return;
+
+            var item = ProfileList.SelectedItems[0];
+            EditNameProfileWindow w = new EditNameProfileWindow(item.ToString());            
+            w.FormClosed += (s, args) => { PrintProfiles(); };
+            w.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Profiles.Remove(ProfileList.SelectedItems[0].Text);
+            Properties.Settings.Default.Profiles.Remove(ProfileList.SelectedItems[0].ToString());
             Properties.Settings.Default.Save();
             PrintProfiles();
         }

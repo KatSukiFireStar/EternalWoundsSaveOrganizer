@@ -37,8 +37,8 @@
             NewProfileButton = new Button();
             EditButton = new Button();
             DeleteButton = new Button();
-            ProfileList = new ListView();
             BrowseSaveButton = new Button();
+            ProfileList = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -113,6 +113,7 @@
             EditButton.TabIndex = 9;
             EditButton.Text = "Edit";
             EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // DeleteButton
             // 
@@ -122,20 +123,7 @@
             DeleteButton.TabIndex = 10;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
-            DeleteButton.Click += this.DeleteButton_Click;
-            // 
-            // ProfileList
-            // 
-            ProfileList.BackColor = SystemColors.ControlDark;
-            ProfileList.HeaderStyle = ColumnHeaderStyle.None;
-            ProfileList.Location = new Point(14, 148);
-            ProfileList.MultiSelect = false;
-            ProfileList.Name = "ProfileList";
-            ProfileList.ShowGroups = false;
-            ProfileList.Size = new Size(383, 97);
-            ProfileList.TabIndex = 11;
-            ProfileList.UseCompatibleStateImageBehavior = false;
-            ProfileList.View = View.List;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // BrowseSaveButton
             // 
@@ -146,6 +134,16 @@
             BrowseSaveButton.Text = "Browse";
             BrowseSaveButton.UseVisualStyleBackColor = true;
             BrowseSaveButton.Click += BrowseSaveButton_Click;
+            // 
+            // ProfileList
+            // 
+            ProfileList.BackColor = SystemColors.ControlDark;
+            ProfileList.FormattingEnabled = true;
+            ProfileList.ItemHeight = 15;
+            ProfileList.Location = new Point(14, 148);
+            ProfileList.Name = "ProfileList";
+            ProfileList.Size = new Size(383, 94);
+            ProfileList.TabIndex = 11;
             // 
             // ProfileWindow
             // 
@@ -180,7 +178,7 @@
         private Button NewProfileButton;
         private Button EditButton;
         private Button DeleteButton;
-        private ListView ProfileList;
         private Button BrowseSaveButton;
+        private ListBox ProfileList;
     }
 }
