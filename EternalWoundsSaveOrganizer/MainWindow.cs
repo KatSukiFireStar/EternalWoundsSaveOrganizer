@@ -7,9 +7,11 @@ namespace EternalWoundsSaveOrganizer
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ProfileButton_Click(object sender, EventArgs e)
         {
-
+            ProfileWindow w = new ProfileWindow();
+            this.AddOwnedForm(w);
+            w.ShowDialog();
         }
     }
 }
