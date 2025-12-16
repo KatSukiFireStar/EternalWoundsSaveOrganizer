@@ -22,6 +22,7 @@ namespace EternalWoundsSaveOrganizer
             if (!String.IsNullOrEmpty(ProfileNameText.Text) && !Properties.Settings.Default.Profiles.Contains(ProfileNameText.Text))
             {
                 Properties.Settings.Default.Profiles.Add(ProfileNameText.Text);
+                Directory.CreateDirectory(System.IO.Path.Combine(Properties.Settings.Default.ProfileDirectory, ProfileNameText.Text));
                 Properties.Settings.Default.Save();
             }
             this.Close();

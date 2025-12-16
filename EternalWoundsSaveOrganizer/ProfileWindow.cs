@@ -85,14 +85,20 @@ namespace EternalWoundsSaveOrganizer
                 return;
 
             var item = ProfileList.SelectedItems[0];
-            EditNameProfileWindow w = new EditNameProfileWindow(item.ToString());            
+            EditNameProfileWindow w = new EditNameProfileWindow(item?.ToString()!);            
             w.FormClosed += (s, args) => { PrintProfiles(); };
             w.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Profiles.Remove(ProfileList.SelectedItems[0].ToString());
+            if (ProfileList.SelectedItems.Count == 0)
+                return;
+
+            string? name = ProfileList.SelectedItems?[0]?.ToString();
+
+            Properties.Settings.Default.Profiles.Remove(name);
+            Directory.Delete(System.IO.Path.Combine(Properties.Settings.Default.ProfileDirectory, name!), true);
             Properties.Settings.Default.Save();
             PrintProfiles();
         }
@@ -100,9 +106,9 @@ namespace EternalWoundsSaveOrganizer
         private void PrintProfiles()
         {
             ProfileList.Items.Clear();
-            foreach (string s in Properties.Settings.Default.Profiles)
+            foreach (string? s in Properties.Settings.Default.Profiles)
             {
-                ProfileList.Items.Add(s);
+                ProfileList.Items.Add(s!);
             }
         }
     }

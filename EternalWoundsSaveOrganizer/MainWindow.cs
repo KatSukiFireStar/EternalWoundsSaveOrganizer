@@ -17,15 +17,20 @@ namespace EternalWoundsSaveOrganizer
         {
             ProfileWindow w = new ProfileWindow();
             this.AddOwnedForm(w);
+            w.FormClosed += (s, args) => { UpdateProfileList(); };
             w.ShowDialog();
         }
 
         private void UpdateProfileList()
         {
             DropDownProfile.Items.Clear();
-            foreach (string s in Properties.Settings.Default.Profiles)
+            DropDownProfile.Text = "";
+            if (Properties.Settings.Default.Profiles.Count == 0)
+                return;
+
+            foreach (string? s in Properties.Settings.Default.Profiles)
             {
-                DropDownProfile.Items.Add(s);
+                DropDownProfile.Items.Add(s!);
             }
             DropDownProfile.SelectedIndex = 0;
         }

@@ -31,6 +31,10 @@ namespace EternalWoundsSaveOrganizer
                     if (Properties.Settings.Default.Profiles[i] == originalProfileName)
                     {
                         Properties.Settings.Default.Profiles[i] = ProfileNameText.Text;
+                        Directory.Move(
+                            System.IO.Path.Combine(Properties.Settings.Default.ProfileDirectory, originalProfileName),
+                            System.IO.Path.Combine(Properties.Settings.Default.ProfileDirectory, ProfileNameText.Text)
+                        );
                         break;
                     }
                 }
