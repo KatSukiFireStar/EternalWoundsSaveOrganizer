@@ -93,6 +93,7 @@
             LoadButton.TabIndex = 6;
             LoadButton.Text = "Load savestate";
             LoadButton.UseVisualStyleBackColor = true;
+            LoadButton.Click += LoadButton_Click;
             // 
             // Replace
             // 
@@ -102,6 +103,7 @@
             Replace.TabIndex = 7;
             Replace.Text = "Replace savestate";
             Replace.UseVisualStyleBackColor = true;
+            Replace.Click += Replace_Click;
             // 
             // EditSaveName
             // 
@@ -111,6 +113,7 @@
             EditSaveName.TabIndex = 8;
             EditSaveName.Text = "Edit savestate name";
             EditSaveName.UseVisualStyleBackColor = true;
+            EditSaveName.Click += EditSaveName_Click;
             // 
             // Delete
             // 

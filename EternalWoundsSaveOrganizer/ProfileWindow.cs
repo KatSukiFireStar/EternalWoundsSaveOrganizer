@@ -20,11 +20,11 @@ namespace EternalWoundsSaveOrganizer
             SaveLocation.Text = Properties.Settings.Default.SaveLocation;
             ProfileDirectory.Text = Properties.Settings.Default.ProfileDirectory;
 
-            if (ProfileList.SelectedItems.Count == 0)
+            if(String.IsNullOrEmpty(Properties.Settings.Default.ProfileDirectory))
             {
-                EditButton.Enabled = false;
-                DeleteButton.Enabled = false;
+                NewProfileButton.Enabled = false;
             }
+            CheckSelection();
 
 
             if (Properties.Settings.Default.Profiles != null)
@@ -35,7 +35,7 @@ namespace EternalWoundsSaveOrganizer
             ProfileList.SelectedIndexChanged += ProfileList_SelectedIndexChanged;
         }
 
-        private void ProfileList_SelectedIndexChanged(object? sender, EventArgs e)
+        private void CheckSelection()
         {
             if (ProfileList.SelectedItems.Count == 0)
             {
@@ -47,6 +47,11 @@ namespace EternalWoundsSaveOrganizer
                 EditButton.Enabled = true;
                 DeleteButton.Enabled = true;
             }
+        }
+
+        private void ProfileList_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            CheckSelection();
         }
 
         private void BrowseSaveButton_Click(object sender, EventArgs e)
@@ -65,6 +70,7 @@ namespace EternalWoundsSaveOrganizer
                     Properties.Settings.Default.Save();
                 }
             }
+            CheckSelection();
         }
 
         private void BrowseProfileButton_Click(object sender, EventArgs e)
@@ -89,11 +95,10 @@ namespace EternalWoundsSaveOrganizer
 
                     Properties.Settings.Default.Save();
                     NewProfileButton.Enabled = true;
-                    EditButton.Enabled = true;
-                    DeleteButton.Enabled = true;
                     PrintProfiles();
                 }
             }
+            CheckSelection();
         }
 
         private void NewProfileButton_Click(object sender, EventArgs e)
@@ -121,10 +126,9 @@ namespace EternalWoundsSaveOrganizer
 
             string? name = ProfileList.SelectedItems?[0]?.ToString();
 
-            Properties.Settings.Default.Profiles.Remove(name);
-            Directory.Delete(System.IO.Path.Combine(Properties.Settings.Default.ProfileDirectory, name!), true);
-            Properties.Settings.Default.Save();
-            PrintProfiles();
+            ProfileDeleteWindow w = new ProfileDeleteWindow(name!);
+            w.FormClosed += (s, args) => { PrintProfiles(); };
+            w.ShowDialog();
         }
 
         private void PrintProfiles()
@@ -134,6 +138,7 @@ namespace EternalWoundsSaveOrganizer
             {
                 ProfileList.Items.Add(s!);
             }
+            CheckSelection();
         }
     }
 }

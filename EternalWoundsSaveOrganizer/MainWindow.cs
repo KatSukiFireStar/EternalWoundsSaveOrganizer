@@ -13,12 +13,9 @@ namespace EternalWoundsSaveOrganizer
             DropDownProfile.SelectedIndexChanged += DropDownProfile_SelectedIndexChanged;
             ReloadSaveList();
 
-            if(SaveList.SelectedItems.Count == 0)
+            if (SaveList.SelectedItems.Count == 0)
             {
-                LoadButton.Enabled = false;
-                Replace.Enabled = false;
-                EditSaveName.Enabled = false;
-                Delete.Enabled = false;
+                ChangeActiveButton(false);
             }
             SaveList.SelectedIndexChanged += SaveList_SelectedIndexChanged;
         }
@@ -27,30 +24,20 @@ namespace EternalWoundsSaveOrganizer
         {
             if (SaveList.SelectedItems.Count == 0)
             {
-                LoadButton.Enabled = false;
-                Replace.Enabled = false;
-                EditSaveName.Enabled = false;
-                Delete.Enabled = false;
+                ChangeActiveButton(false);
             }
             else
             {
-                LoadButton.Enabled = true;
-                Replace.Enabled = true;
-                EditSaveName.Enabled = true;
-                Delete.Enabled = true;
+                ChangeActiveButton(true);
             }
         }
 
         private void ProfileButton_Click(object sender, EventArgs e)
         {
             ProfileWindow w = new ProfileWindow();
-            this.AddOwnedForm(w);
             w.FormClosed += (s, args) => { UpdateProfileList(); };
             w.ShowDialog();
-            LoadButton.Enabled = false;
-            Replace.Enabled = false;
-            EditSaveName.Enabled = false;
-            Delete.Enabled = false;
+            ChangeActiveButton(false);
         }
 
         private void UpdateProfileList()
@@ -119,12 +106,56 @@ namespace EternalWoundsSaveOrganizer
                 return;
 
             string? name = SaveList.SelectedItems?[0]?.ToString();
-            File.Delete(System.IO.Path.Combine(Properties.Settings.Default.CurrentProfilePath, name!));
-            ReloadSaveList();
-            LoadButton.Enabled = false;
-            Replace.Enabled = false;
-            EditSaveName.Enabled = false;
-            Delete.Enabled = false;
+
+            SavestateDeleteWindow w = new SavestateDeleteWindow(name!);
+            w.FormClosed += (s, args) => { ReloadSaveList(); };
+            w.ShowDialog();
+            ChangeActiveButton(false);
+        }
+
+        private void ChangeActiveButton(bool active)
+        {
+            LoadButton.Enabled = active;
+            Replace.Enabled = active;
+            EditSaveName.Enabled = active;
+            Delete.Enabled = active;
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            if (SaveList.SelectedItems.Count == 0)
+                return;
+
+            string? name = SaveList.SelectedItems?[0]?.ToString();
+
+            File.Copy(System.IO.Path.Combine(Properties.Settings.Default.CurrentProfilePath, name!),
+                Properties.Settings.Default.SaveLocation, true);
+            
+            MessageBox.Show("Save load successfully !", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Replace_Click(object sender, EventArgs e)
+        {
+            if (SaveList.SelectedItems.Count == 0)
+                return;
+
+            string? name = SaveList.SelectedItems?[0]?.ToString();
+            SavestateReplaceWindow w = new SavestateReplaceWindow(name!);
+            w.FormClosed += (s, args) => { ReloadSaveList(); };
+            w.ShowDialog();
+            ChangeActiveButton(false);
+        }
+
+        private void EditSaveName_Click(object sender, EventArgs e)
+        {
+            if (SaveList.SelectedItems.Count == 0)
+                return;
+
+            string? name = SaveList.SelectedItems?[0]?.ToString();
+            SavestateEditNameWindow w = new SavestateEditNameWindow(name!);
+            w.FormClosed += (s, args) => { ReloadSaveList(); };
+            w.ShowDialog();
+            ChangeActiveButton(false);
         }
     }
 }
