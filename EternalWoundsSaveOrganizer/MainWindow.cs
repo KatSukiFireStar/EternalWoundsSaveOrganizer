@@ -65,7 +65,7 @@ namespace EternalWoundsSaveOrganizer
 
         private void ReloadSaveList()
         {
-            if (String.IsNullOrEmpty(Properties.Settings.Default.CurrentProfilePath))
+            if (String.IsNullOrEmpty(Properties.Settings.Default.CurrentProfilePath) || !Directory.Exists(Properties.Settings.Default.CurrentProfilePath))
                 return;
 
             SaveList.Items.Clear();
