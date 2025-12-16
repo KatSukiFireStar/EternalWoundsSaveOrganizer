@@ -57,5 +57,17 @@ namespace EternalWoundsSaveOrganizer.Properties {
                 this["Profiles"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentProfilePath {
+            get {
+                return ((string)(this["CurrentProfilePath"]));
+            }
+            set {
+                this["CurrentProfilePath"] = value;
+            }
+        }
     }
 }

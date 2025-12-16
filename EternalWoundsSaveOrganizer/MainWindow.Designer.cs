@@ -31,7 +31,12 @@
             label1 = new Label();
             DropDownProfile = new ComboBox();
             ProfileButton = new Button();
-            listBox1 = new ListBox();
+            SaveList = new ListBox();
+            Import = new Button();
+            LoadButton = new Button();
+            Replace = new Button();
+            EditSaveName = new Button();
+            Delete = new Button();
             SuspendLayout();
             // 
             // label1
@@ -52,30 +57,82 @@
             // 
             // ProfileButton
             // 
-            ProfileButton.Location = new Point(391, 7);
+            ProfileButton.Location = new Point(385, 7);
             ProfileButton.Name = "ProfileButton";
-            ProfileButton.Size = new Size(95, 23);
+            ProfileButton.Size = new Size(130, 23);
             ProfileButton.TabIndex = 2;
             ProfileButton.Text = "Edit profile";
             ProfileButton.UseVisualStyleBackColor = true;
             ProfileButton.Click += ProfileButton_Click;
             // 
-            // listBox1
+            // SaveList
             // 
-            listBox1.BackColor = SystemColors.ControlDark;
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(12, 49);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(474, 349);
-            listBox1.TabIndex = 4;
+            SaveList.BackColor = SystemColors.ControlDark;
+            SaveList.FormattingEnabled = true;
+            SaveList.ItemHeight = 15;
+            SaveList.Location = new Point(12, 49);
+            SaveList.Name = "SaveList";
+            SaveList.Size = new Size(367, 199);
+            SaveList.TabIndex = 4;
+            // 
+            // Import
+            // 
+            Import.Location = new Point(385, 49);
+            Import.Name = "Import";
+            Import.Size = new Size(130, 23);
+            Import.TabIndex = 5;
+            Import.Text = "Import savestate";
+            Import.UseVisualStyleBackColor = true;
+            Import.Click += Import_Click;
+            // 
+            // LoadButton
+            // 
+            LoadButton.Location = new Point(385, 78);
+            LoadButton.Name = "LoadButton";
+            LoadButton.Size = new Size(130, 23);
+            LoadButton.TabIndex = 6;
+            LoadButton.Text = "Load savestate";
+            LoadButton.UseVisualStyleBackColor = true;
+            // 
+            // Replace
+            // 
+            Replace.Location = new Point(385, 107);
+            Replace.Name = "Replace";
+            Replace.Size = new Size(130, 23);
+            Replace.TabIndex = 7;
+            Replace.Text = "Replace savestate";
+            Replace.UseVisualStyleBackColor = true;
+            // 
+            // EditSaveName
+            // 
+            EditSaveName.Location = new Point(385, 136);
+            EditSaveName.Name = "EditSaveName";
+            EditSaveName.Size = new Size(130, 23);
+            EditSaveName.TabIndex = 8;
+            EditSaveName.Text = "Edit savestate name";
+            EditSaveName.UseVisualStyleBackColor = true;
+            // 
+            // Delete
+            // 
+            Delete.Location = new Point(385, 165);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(130, 23);
+            Delete.TabIndex = 9;
+            Delete.Text = "Delete savestate";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(498, 450);
-            Controls.Add(listBox1);
+            ClientSize = new Size(520, 274);
+            Controls.Add(Delete);
+            Controls.Add(EditSaveName);
+            Controls.Add(Replace);
+            Controls.Add(LoadButton);
+            Controls.Add(Import);
+            Controls.Add(SaveList);
             Controls.Add(ProfileButton);
             Controls.Add(DropDownProfile);
             Controls.Add(label1);
@@ -90,6 +147,11 @@
         private Label label1;
         private ComboBox DropDownProfile;
         private Button ProfileButton;
-        private ListBox listBox1;
+        private ListBox SaveList;
+        private Button Import;
+        private Button LoadButton;
+        private Button Replace;
+        private Button EditSaveName;
+        private Button Delete;
     }
 }

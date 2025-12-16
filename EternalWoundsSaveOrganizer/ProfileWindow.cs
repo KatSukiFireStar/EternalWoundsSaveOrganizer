@@ -20,17 +20,33 @@ namespace EternalWoundsSaveOrganizer
             SaveLocation.Text = Properties.Settings.Default.SaveLocation;
             ProfileDirectory.Text = Properties.Settings.Default.ProfileDirectory;
 
-            if (String.IsNullOrEmpty(Properties.Settings.Default.ProfileDirectory))
+            if (ProfileList.SelectedItems.Count == 0)
             {
-                NewProfileButton.Enabled = false;
                 EditButton.Enabled = false;
                 DeleteButton.Enabled = false;
             }
+
 
             if (Properties.Settings.Default.Profiles != null)
                 PrintProfiles();
             else
                 Properties.Settings.Default.Profiles = new();
+
+            ProfileList.SelectedIndexChanged += ProfileList_SelectedIndexChanged;
+        }
+
+        private void ProfileList_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (ProfileList.SelectedItems.Count == 0)
+            {
+                EditButton.Enabled = false;
+                DeleteButton.Enabled = false;
+            }
+            else
+            {
+                EditButton.Enabled = true;
+                DeleteButton.Enabled = true;
+            }
         }
 
         private void BrowseSaveButton_Click(object sender, EventArgs e)
@@ -63,11 +79,19 @@ namespace EternalWoundsSaveOrganizer
                 {
                     ProfileDirectory.Text = folderPath;
                     Properties.Settings.Default.ProfileDirectory = folderPath;
-                    Properties.Settings.Default.Save();
+                    
+                    Properties.Settings.Default.Profiles.Clear();
+                    foreach (string dir in Directory.EnumerateDirectories(folderPath))
+                    {
+                        string name = Path.GetFileName(dir);
+                        Properties.Settings.Default.Profiles.Add(name);
+                    }
 
+                    Properties.Settings.Default.Save();
                     NewProfileButton.Enabled = true;
                     EditButton.Enabled = true;
                     DeleteButton.Enabled = true;
+                    PrintProfiles();
                 }
             }
         }
